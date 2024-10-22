@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Financial Dashboard</title>
+    <!-- Import Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card-panel {
+            padding: 20px;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="center-align">Personal Financial Dashboard</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="center-align">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>Upload CSV</span>
+                    <input type="file" name="file">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Choose a CSV file">
+                </div>
+            </div>
+            <button type="submit" class="waves-effect waves-light btn">Generate Dashboard</button>
+        </form>
+        
+        {% if fig_summary %}
+            <div class="card-panel">
+                <h2>Summary</h2>
+                <div>{{ fig_summary|safe }}</div>
+            </div>
+            <div class="card-panel">
+                <h2>Monthly Income and Expenses</h2>
+                <div>{{ fig_income_expense|safe }}</div>
+            </div>
+            <div class="card-panel">
+                <h2>Expense Breakdown</h2>
+                <div>{{ fig_category_expenses|safe }}</div>
+            </div>
+            <div class="card-panel">
+                <h2>Savings Progress</h2>
+                <div class="progress">
+                    <div class="determinate" style="width: {{ savings_percentage }}%"></div>
+                </div>
+                <p>Savings: {{ savings_percentage|round(2) }}% of Income</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

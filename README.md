@@ -2,6 +2,8 @@
 
 A Flask-based financial dashboard that enables users to upload CSV files containing transaction data and view insightful summaries and visualizations of their income, expenses, and savings. The dashboard provides monthly breakdowns, income and expense charts, and savings metrics.
 
+![Screenshot](screenshot.png)
+
 ## Features
 
 - **Upload CSV Files:** Easily upload a CSV file with your transaction data.
